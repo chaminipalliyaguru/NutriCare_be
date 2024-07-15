@@ -10,6 +10,15 @@ app.get('/recipe/:recipeId', (req, res) => {
     res.send(req.params)
   })
 
+  app.get('/recipes', (req, res) => {
+    const recipes = [
+        {id: 1, name: 'Burger', description: 'Tasty burger'},
+        {id: 2, name: 'Pizza', description: 'Cheesy pizza'},
+        {id: 3, name: 'Pasta', description: 'Spicy pasta'}
+    ];
+    res.json(recipes)
+})
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
