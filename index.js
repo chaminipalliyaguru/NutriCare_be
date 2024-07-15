@@ -6,6 +6,10 @@ app.get('/', (req, res) => {
   res.json({ message: 'Hello World!' })
 })
 
+app.get('/recipe/:recipeId', (req, res) => {
+    res.send(req.params)
+  })
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
