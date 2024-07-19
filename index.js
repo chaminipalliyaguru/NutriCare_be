@@ -1,24 +1,19 @@
+
 const express = require('express')
 const app = express()
 const port = 3000
+const recipeRouter = require('./src/modules/recipe/routes')
 
-app.get('/', (req, res) => {
-  res.json({ message: 'Hello World!' })
+
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+
+app.post('/', (req, res) => {
+    res.json({ message: 'Hello World' })
 })
 
-app.get('/recipe/:recipeId', (req, res) => {
-    res.send(req.params)
-  })
-
-  app.get('/recipes', (req, res) => {
-    const recipes = [
-        {id: 1, name: 'Burger', description: 'Tasty burger'},
-        {id: 2, name: 'Pizza', description: 'Cheesy pizza'},
-        {id: 3, name: 'Pasta', description: 'Spicy pasta'}
-    ];
-    res.json(recipes)
-})
+app.use('/recipe', recipeRouter)
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+    console.log(`Example app listening on port ${port}`)
 })
