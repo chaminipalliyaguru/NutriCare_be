@@ -1,7 +1,8 @@
 const express = require('express')
 const router = express.Router()
 
-const { getAllDoctors, getDoctorById, searchDoctor, createDoctor, updateDoctor, deleteDoctor } = require('./Doctor-controller')
+
+const { getAllDoctors, getDoctorById, searchDoctor, createDoctor, updateDoctor, deleteDoctor } = require('./doctor-controller')
 
 router.get('/get-all', getAllDoctors)
 
