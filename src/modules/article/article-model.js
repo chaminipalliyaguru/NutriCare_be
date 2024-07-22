@@ -1,32 +1,20 @@
-// const mongoose =  require('../../database/mongoose');
+const mongoose =  require('../../database/mongoose');
 
-// const recipeSchema = new mongoose.Schema({
-//     title: {
-//         type: String,
-//         required: true
-//     },
-//     description: {
-//         type: String,
-//         required: true
-//     },
-//     prepTime: {
-//         type: Number,
-//         required: true
-//     },
-//     serves: {
-//         type: Number,
-//         required: true
-//     },
-//     imgSrc: {
-//         type: String,
-//         required: true
-//     },
-//     condition: {
-//         type: String,
-//         required: true
-//     }
-// });
+const articleSchema = new mongoose.Schema({
+    title: {
+        type: String,
+        required: true
+    },
+    description: {
+        type: String,
+        required: true
+    },
+    content: {
+        type: String,
+        required: true
+    }
+});
 
-// const Recipe = mongoose.model('Recipe', recipeSchema);
+const Article = mongoose.model('Article', articleSchema);
 
-// module.exports = Recipe;
+module.exports = Article;
