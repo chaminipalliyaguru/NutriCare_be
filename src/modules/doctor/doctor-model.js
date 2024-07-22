@@ -13,7 +13,7 @@ const doctorSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    DocNumber: {
+    docNumber: {
         type: Number,
         required: true
     }

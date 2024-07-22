@@ -22,7 +22,7 @@ async function createDoctor(req, res) {
         docName: req.body.docName,
         docPosition: req.body.docPosition,
         docDesc: req.body.docDesc,
-        DocNumber: req.body.DocNumber
+        docNumber: req.body.docNumber
     });
     try {
         await doctor.save();
@@ -44,8 +44,8 @@ async function updateDoctor(req, res) {
         if (req.body.docDesc) {
             doctor.docDesc = req.body.docDesc;
         }
-        if (req.body.DocNumber) {
-            doctor.DocNumber = req.body.DocNumber;
+        if (req.body.docNumber) {
+            doctor.docNumber = req.body.docNumber;
         }
         await doctor.save();
         res.json(doctor);
