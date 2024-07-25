@@ -63,9 +63,9 @@ async function updateRecipe(req, res) {
         }
         await recipe.save();
         res.json(recipe);
-        } catch (error) {
-            res.status(400).json({ message: error.message });
-        }
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
 }
 
 async function deleteRecipe(req, res) {
