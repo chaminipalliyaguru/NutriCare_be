@@ -1,4 +1,4 @@
-const mongoose =  require('../../database/mongoose');
+const mongoose = require('../../database/mongoose');
 
 const recipeSchema = new mongoose.Schema({
     title: {
@@ -22,6 +22,10 @@ const recipeSchema = new mongoose.Schema({
         required: true
     },
     condition: {
+        type: String,
+        required: true
+    },
+    recipeContent: {
         type: String,
         required: true
     }

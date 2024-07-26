@@ -4,10 +4,8 @@ const { OpenAIClient } = require("@azure/openai");
 const { AzureKeyCredential } = require("@azure/core-auth");
 const dotenv = require('dotenv');
 
-// Load environment variables from .env file
 dotenv.config();
 
-// Debugging statements
 console.log("OPEN_AI_ENDPOINT:", process.env.OPEN_AI_ENDPOINT);
 console.log("OPEN_AI_SECRET:", process.env.OPEN_AI_SECRET);
 console.log("DEPLOY_ID:", process.env.DEPLOY_ID);
@@ -18,11 +16,10 @@ const recipeRouter = require('./src/modules/recipe/routes');
 const doctorRouter = require('./src/modules/doctor/routes');
 const articleRouter = require('./src/modules/article/routes');
 
-app.use(cors({ origin: '*' })); // Allow all origins for CORS
+app.use(cors({ origin: '*' })); 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Read values from environment variables
 const OPEN_AI_ENDPOINT = process.env.OPEN_AI_ENDPOINT;
 const OPEN_AI_SECRET = process.env.OPEN_AI_SECRET;
 const DEPLOY_ID = process.env.DEPLOY_ID;

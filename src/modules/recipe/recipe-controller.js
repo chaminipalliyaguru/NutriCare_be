@@ -30,7 +30,8 @@ async function createRecipe(req, res) {
         prepTime: req.body.prepTime,
         serves: req.body.serves,
         imgSrc: req.body.imgSrc,
-        condition: req.body.condition
+        condition: req.body.condition,
+        recipeContent: req.body.recipeContent 
     });
     try {
         await recipe.save();
@@ -61,11 +62,14 @@ async function updateRecipe(req, res) {
         if (req.body.condition) {
             recipe.condition = req.body.condition;
         }
+        if (req.body.recipeContent) { // New field
+            recipe.recipeContent = req.body.recipeContent;
+        }
         await recipe.save();
         res.json(recipe);
-        } catch (error) {
-            res.status(400).json({ message: error.message });
-        }
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
 }
 
 async function deleteRecipe(req, res) {
@@ -76,7 +80,6 @@ async function deleteRecipe(req, res) {
         res.status(400).json({ message: error.message });
     }
 }
-
 
 module.exports = {
     getAllRecipes,
