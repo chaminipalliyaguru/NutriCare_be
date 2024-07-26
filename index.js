@@ -1,20 +1,31 @@
 const express = require('express');
 const cors = require('cors');
+const { OpenAIClient } = require("@azure/openai");
+const { AzureKeyCredential } = require("@azure/core-auth");
+const dotenv = require('dotenv');
+
+// Load environment variables from .env file
+dotenv.config();
+
+// Debugging statements
+console.log("OPEN_AI_ENDPOINT:", process.env.OPEN_AI_ENDPOINT);
+console.log("OPEN_AI_SECRET:", process.env.OPEN_AI_SECRET);
+console.log("DEPLOY_ID:", process.env.DEPLOY_ID);
+
 const app = express();
-const { OpenAIClient, AzureKeyCredential } = require("@azure/openai");
 const port = 3000;
 const recipeRouter = require('./src/modules/recipe/routes');
 const doctorRouter = require('./src/modules/doctor/routes');
 const articleRouter = require('./src/modules/article/routes');
 
-
-app.use(cors()); // This will allow all CORS requests
-
+app.use(cors({ origin: '*' })); // Allow all origins for CORS
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-require("dotenv").config();
-const { OPEN_AI_ENDPOINT, OPEN_AI_SECRET, DEPLOY_ID } = process.env;
+// Read values from environment variables
+const OPEN_AI_ENDPOINT = process.env.OPEN_AI_ENDPOINT;
+const OPEN_AI_SECRET = process.env.OPEN_AI_SECRET;
+const DEPLOY_ID = process.env.DEPLOY_ID;
 
 const client = new OpenAIClient(
     OPEN_AI_ENDPOINT,
@@ -25,16 +36,11 @@ app.post('/', (req, res) => {
     res.json({ message: 'Hello World' });
 });
 
-app.use('/recipe', recipeRouter)
-app.use('/article', articleRouter)
+app.use('/recipe', recipeRouter);
+app.use('/article', articleRouter);
 app.use('/doctor', doctorRouter);
 
-
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`);
-});
-
-app.post("/ /ask-bot", async (req, res) => {
+app.post('/ask-bot', async (req, res) => {
     try {
         const result = await client.getChatCompletions(DEPLOY_ID, req.body);
         res.send(result.choices[0].message);
@@ -42,5 +48,9 @@ app.post("/ /ask-bot", async (req, res) => {
         console.log(error);
         res.send("Error");
     }
+});
+
+app.listen(port, () => {
+    console.log(`Example app listening on port ${port}`);
 });
 
