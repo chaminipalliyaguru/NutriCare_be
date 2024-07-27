@@ -86,6 +86,6 @@ module.exports = {
     getRecipeById,
     searchRecipe,
     createRecipe,
-    updateRecipe,,,,
+    updateRecipe,
     deleteRecipe
 }
