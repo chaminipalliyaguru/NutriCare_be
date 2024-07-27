@@ -1,11 +1,5 @@
 const Recipe = require('./recipe-model');
 
-const recipes = [
-    { id: 1, name: 'Biryani', description: 'Biryani is a mixed rice dish originating among the Muslims of the Indian subcontinent.' },
-    { id: 2, name: 'Pulao', description: 'Pulao is a rice dish in which rice is cooked in a seasoned broth.' },
-    { id: 3, name: 'Karahi', description: 'Karahi is a type of curry which is made in a karahi.' }
-]
-
 async function getAllRecipes(req, res) {
     const recipes = await Recipe.find();
     res.json(recipes);
