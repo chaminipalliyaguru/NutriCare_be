@@ -12,7 +12,12 @@ const articleSchema = new mongoose.Schema({
     content: {
         type: String,
         required: true
+    },
+    imgSrc: {
+        type:String,
+        required: true
     }
+        
 });
 
 const Article = mongoose.model('Article', articleSchema);

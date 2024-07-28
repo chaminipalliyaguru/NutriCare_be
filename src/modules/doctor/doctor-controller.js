@@ -22,7 +22,8 @@ async function createDoctor(req, res) {
         docName: req.body.docName,
         docPosition: req.body.docPosition,
         docDesc: req.body.docDesc,
-        docNumber: req.body.docNumber
+        docNumber: req.body.docNumber,
+        docImg: req.body.docImg
     });
     try {
         await doctor.save();
@@ -46,6 +47,9 @@ async function updateDoctor(req, res) {
         }
         if (req.body.docNumber) {
             doctor.docNumber = req.body.docNumber;
+        }
+        if (req.body.docImg) {
+            doctor.docImg = req.body.docImg;
         }
         await doctor.save();
         res.json(doctor);

@@ -21,7 +21,8 @@ async function createArticle(req, res) {
     const article = new Article({
         title: req.body.title,
         description: req.body.description,
-        content: req.body.content
+        content: req.body.content,
+        imgSrc: req.body.imgSrc
     });
     try {
         await article.save();
@@ -42,6 +43,9 @@ async function updateArticle(req, res) {
         }
         if (req.body.content) {
             article.content = req.body.content;
+        }
+        if (req.body.imgSrc) {
+            article.imgSrc = req.body.imgSrc;
         }
         await article.save();
         res.json(article);

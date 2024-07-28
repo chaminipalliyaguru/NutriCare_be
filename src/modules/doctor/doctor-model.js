@@ -16,6 +16,10 @@ const doctorSchema = new mongoose.Schema({
     docNumber: {
         type: Number,
         required: true
+    },
+    docImg: {
+        type: String,
+        required: true
     }
 });
 
